@@ -1,2 +1,2 @@
-# JavaScriptProjects
-All the JavaScript projects are here.
+# GamesCollection
+All the games i developed are here.
