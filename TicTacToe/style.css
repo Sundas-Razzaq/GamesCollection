@@ -21,7 +21,24 @@ h1 {
     user-select: none;
 }
 
-/* Game container with subtle shadow and rounded corners */
+/* Game area container */
+.game-area {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 800px;
+}
+
+/* Game board container */
+.game-board-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(100%, 360px);
+}
+
+/* Game container */
 .game {
     background: #ffffc7;
     border-radius: 1.25rem;
@@ -29,7 +46,7 @@ h1 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.25rem;
-    width: min(90vw, 360px);
+    width: 100%;
     aspect-ratio: 1 / 1;
     padding: 1.5rem;
     position: relative;
@@ -51,14 +68,11 @@ h1 {
     transition: background-color 0.3s ease;
     user-select: none;
     border: 3px solid transparent;
-    /* Prevent scaling or movement on fill */
-    /* Fix size and prevent growth */
     width: 100%;
     height: 100%;
     line-height: 1;
     overflow: hidden;
     text-align: center;
-    /* Prevent text from causing box to grow */
     flex-shrink: 0;
 }
 
@@ -68,7 +82,6 @@ h1 {
     box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05);
 }
 
-/* Remove hover and active scaling */
 .box:not(:disabled):hover {
     background-color: #fff7d6;
     border-color: #ff6b6b;
@@ -78,7 +91,6 @@ h1 {
     background-color: #ffeaa7;
 }
 
-/* Color for O and X */
 .box[data-player="O"] {
     color: #e02424;
     text-shadow: 0 0 6px #ff4d4d;
@@ -120,16 +132,16 @@ h1 {
 
 /* Message container */
 .msg_container {
-    margin-top: 3rem;
     background: #fff3f3;
     border-radius: 1.5rem;
     box-shadow: 0 8px 20px rgba(180, 65, 62, 0.2);
     padding: 2rem 2.5rem;
-    max-width: 360px;
-    width: 90vw;
+    width: min(100%, 360px);
+    height: min(100%, 360px);
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 1.5rem;
     user-select: none;
 }
@@ -146,7 +158,6 @@ h1 {
     display: none !important;
 }
 
-/* Canvas line styling */
 canvas {
     position: absolute;
     top: 0;
@@ -157,6 +168,17 @@ canvas {
 }
 
 /* Responsive adjustments */
+@media (max-width: 768px) {
+    .game-area {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .msg_container {
+        margin-top: 2rem;
+    }
+}
+
 @media (min-width: 640px) {
     body {
         padding-top: 4rem;
@@ -167,20 +189,46 @@ canvas {
     }
 
     .game {
-        width: 420px;
-        height: 420px;
-        gap: 1.75rem;
         padding: 2rem;
     }
 
     #reset,
     #new {
-        max-width: 420px;
         font-size: 1.5rem;
     }
+}
 
-    .msg_container {
-        max-width: 420px;
-        padding: 2.5rem 3rem;
+/* Navigation */
+nav {
+    background: linear-gradient(135deg, #0f0e17, #6e45e2);
+    color: white;
+    padding: 1.5rem 0;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 3;
+}
+
+nav h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4, #fad0c4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav p {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    nav h2 {
+        font-size: 1.8rem;
     }
 }
