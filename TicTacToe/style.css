@@ -1,88 +1,152 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
 body {
-    text-align: center;
-}
-
-.header {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f8fafc, #e0e7ff);
+    min-height: 100vh;
     display: flex;
-}
-
-.container {
-    height: 70vh;
-    display: flex;
-    margin-right: 40vmin;
-    margin-top: 10vmin;
-    margin-left: 5vmin;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.box {
-    height: 18vmin;
-    width: 18vmin;
-    border-radius: 1rem;
-    border: none;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
-    font-size: 8vmin;
-    color: #b0413e;
-    background-color: #ffffc7;
-    position: relative;
-}
-
-.game {
-    height: 60vmin;
-    width: 60vmin;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5vmin;
-    position: relative;
-}
-
-.msg_container {
-    height: 70vmin;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    gap: 2rem;
-    margin-top: 15vmin;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 2rem 1rem 4rem;
+    color: #1e293b;
 }
 
+h1 {
+    font-weight: 700;
+    font-size: 2.75rem;
+    background: linear-gradient(to right, #ff8a00, #ff6b6b, #ff4d9f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    user-select: none;
+}
+
+/* Game container with subtle shadow and rounded corners */
+.game {
+    background: #ffffc7;
+    border-radius: 1.25rem;
+    box-shadow: 0 10px 25px rgba(180, 65, 62, 0.25);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    width: min(90vw, 360px);
+    aspect-ratio: 1 / 1;
+    padding: 1.5rem;
+    position: relative;
+    user-select: none;
+}
+
+/* Each box styling */
+.box {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-size: clamp(3rem, 6vw, 4rem);
+    font-weight: 900;
+    color: #b0413e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    user-select: none;
+    border: 3px solid transparent;
+    /* Prevent scaling or movement on fill */
+    /* Fix size and prevent growth */
+    width: 100%;
+    height: 100%;
+    line-height: 1;
+    overflow: hidden;
+    text-align: center;
+    /* Prevent text from causing box to grow */
+    flex-shrink: 0;
+}
+
+.box:disabled {
+    cursor: default;
+    background-color: #fefefe;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Remove hover and active scaling */
+.box:not(:disabled):hover {
+    background-color: #fff7d6;
+    border-color: #ff6b6b;
+}
+
+.box:not(:disabled):active {
+    background-color: #ffeaa7;
+}
+
+/* Color for O and X */
+.box[data-player="O"] {
+    color: #e02424;
+    text-shadow: 0 0 6px #ff4d4d;
+}
+
+.box[data-player="X"] {
+    color: #2563eb;
+    text-shadow: 0 0 6px #3b82f6;
+}
+
+/* Reset and New Game buttons */
+#reset,
 #new {
-    padding: 1rem;
-    font-size: 1.5rem;
-    background-color: #191913;
-    color: #fff;
+    background: linear-gradient(135deg, #1a1a2e, #4a6bff);
+    color: white;
+    font-weight: 700;
     border-radius: 1rem;
     border: none;
-    width: 27vmin;
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(74, 107, 255, 0.5);
+    transition: background 0.3s ease, transform 0.15s ease;
+    user-select: none;
+    width: 100%;
+    max-width: 360px;
 }
 
-#reset {
-    padding: 1rem;
-    font-size: 1.5rem;
-    background-color: #191913;
-    color: #fff;
-    border-radius: 1rem;
-    border: none;
+#reset:hover,
+#new:hover {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    transform: scale(1.05);
+}
+
+#reset:active,
+#new:active {
+    transform: scale(0.95);
+}
+
+/* Message container */
+.msg_container {
+    margin-top: 3rem;
+    background: #fff3f3;
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 20px rgba(180, 65, 62, 0.2);
+    padding: 2rem 2.5rem;
+    max-width: 360px;
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    user-select: none;
 }
 
 #msg {
-    color: red;
-    font-size: 6vmin;
+    font-size: clamp(1.75rem, 5vw, 3rem);
+    font-weight: 700;
+    color: #b0413e;
+    text-align: center;
+    text-shadow: 0 0 5px #ff6b6b;
 }
 
 .hide {
-    display: none;
+    display: none !important;
 }
 
+/* Canvas line styling */
 canvas {
     position: absolute;
     top: 0;
@@ -90,58 +154,33 @@ canvas {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    /* Allow clicks to pass through */
 }
 
-/* banner page */
-/* Base Styles */
-:root {
-    --primary-color: #4a6bff;
-    --secondary-color: #ff6b6b;
-    --accent-color: #6b48ff;
-    --dark-color: #1a1a2e;
-    --light-color: #f8f9fa;
-    --text-color: #333;
-    --text-light: #6c757d;
-}
+/* Responsive adjustments */
+@media (min-width: 640px) {
+    body {
+        padding-top: 4rem;
+    }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    h1 {
+        font-size: 3.5rem;
+    }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--light-color);
-    color: var(--text-color);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
+    .game {
+        width: 420px;
+        height: 420px;
+        gap: 1.75rem;
+        padding: 2rem;
+    }
 
-/* Navigation */
-nav {
-    background: linear-gradient(135deg, var(--dark-color), var(--primary-color));
-    color: white;
-    padding: 1.5rem 0;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
+    #reset,
+    #new {
+        max-width: 420px;
+        font-size: 1.5rem;
+    }
 
-nav h2 {
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    background: linear-gradient(to right, #ff8a00, #ff6b6b, #ff4d9f);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-nav p {
-    font-size: 1rem;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.8);
+    .msg_container {
+        max-width: 420px;
+        padding: 2.5rem 3rem;
+    }
 }

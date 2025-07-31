@@ -1,41 +1,39 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Tic_Tac_Toe.project</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="header">
-        <div class="container">
-            <main>
-                <h1>Tic Tac Toe Game</h1>
-                <br>
-                <div class="game">
-                    <button class="box"></button>
-                    <button class="box"></button>
-                    <button class="box"></button>
-                    <button class="box"></button>
-                    <button class="box"></button>
-                    <button class="box"></button>
-                    <button class="box"></button>
-                    <button class="box"></button>
-                    <button class="box"></button>
-                </div>
-                <br>
-                <button id="reset">Reset Game</button>
-            </main>
-        </div>
-        <div class="msg_container hide">
-            <p id="msg"></p>
-            <button id="new">New Game</button>
-        </div>
-    </div>
-    <script src="script.js"></script>
+    <main class="flex flex-col items-center w-full max-w-md">
+        <h1 class="select-none">Tic Tac Toe Game</h1>
 
+        <div class="game mt-10 relative" aria-label="Tic Tac Toe game board" role="grid" aria-readonly="true">
+            <button aria-label="Cell 1" role="gridcell" class="box" type="button"></button>
+            <button aria-label="Cell 2" role="gridcell" class="box" type="button"></button>
+            <button aria-label="Cell 3" role="gridcell" class="box" type="button"></button>
+            <button aria-label="Cell 4" role="gridcell" class="box" type="button"></button>
+            <button aria-label="Cell 5" role="gridcell" class="box" type="button"></button>
+            <button aria-label="Cell 6" role="gridcell" class="box" type="button"></button>
+            <button aria-label="Cell 7" role="gridcell" class="box" type="button"></button>
+            <button aria-label="Cell 8" role="gridcell" class="box" type="button"></button>
+            <button aria-label="Cell 9" role="gridcell" class="box" type="button"></button>
+        </div>
+
+        <button id="reset" class="mt-8" type="button" aria-label="Reset Game">Reset Game</button>
+
+        <div class="msg_container mt-10 hide" role="alert" aria-live="assertive" aria-atomic="true">
+            <p id="msg" class="text-center">Congratulations, Winner is 0</p>
+            <button id="new" type="button" aria-label="Start New Game">New Game</button>
+        </div>
+    </main>
+    <script src="script.js"></script>
 </body>
 
 </html>
