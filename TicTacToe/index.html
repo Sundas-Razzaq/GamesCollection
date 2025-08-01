@@ -11,12 +11,11 @@
 </head>
 
 <body>
-    <nav>
-        <h2>
-            Tic Tac Toe Game 🖐🖖
-        </h2>
+    <nav class="game-navbar sticky-nav">
+        <div class="navbar-content">
+            <h1> Tic Tac Toe Game</h1>
+        </div>
     </nav>
-
     <div class="game-area mt-10 w-full">
         <div class="game-board-container">
             <div class="game mt-4 relative" aria-label="Tic Tac Toe game board" role="grid" aria-readonly="true">
@@ -30,6 +29,7 @@
                 <button aria-label="Cell 8" role="gridcell" class="box" type="button"></button>
                 <button aria-label="Cell 9" role="gridcell" class="box" type="button"></button>
             </div>
+            <br>
             <button id="reset" class="mt-6 w-full" type="button" aria-label="Reset Game">Reset Game</button>
         </div>
 

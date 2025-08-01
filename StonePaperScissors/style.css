@@ -4,11 +4,54 @@
   text-align: center;
 }
 
-h1 {
-  background-color: #081b31;
-  color: #fff;
-  height: 5rem;
-  line-height: 5rem;
+.sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.game-navbar {
+  width: 100%;
+  background: linear-gradient(135deg, #1a1a2e, #4a6bff);
+  color: white;
+  padding: 1rem 2rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
+  margin-bottom: 0;
+}
+
+.navbar-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.game-navbar h1 {
+  font-weight: 600;
+  font-size: 2.5rem;
+  margin: 0;
+  padding: 0;
+  background: none;
+  color: #ff9a9e;
+  text-shadow: none;
+}
+
+/* Media Queries for responsiveness */
+@media (min-width: 768px) {
+  .game-navbar h1 {
+    font-size: 3rem;
+  }
+
+  .navbar-subtitle {
+    font-size: 1.3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .game-navbar h1 {
+    font-size: 3.5rem;
+  }
 }
 
 .choice {
