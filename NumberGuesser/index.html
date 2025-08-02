@@ -4,16 +4,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NumberGuessing</title>
+    <title>Guess The Number</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <!-- Animated background elements -->
+    <div class="bg-circle"
+        style="width: 100px; height: 100px; background: rgba(84, 53, 171, 0.8); top: 20%; left: 10%; animation-delay: 0s;">
+    </div>
+    <div class="bg-circle"
+        style="width: 150px; height: 150px; background: rgba(191, 87, 66, 0.8); top: 60%; left: 80%; animation-delay: 2s;">
+    </div>
+    <div class="bg-circle"
+        style="width: 80px; height: 80px; background: #6a5acd; top: 30%; left: 70%; animation-delay: 4s;"></div>
+    <div class="bg-circle"
+        style="width: 120px; height: 120px; background:rgba(65, 105, 158, 0.8); top: 70%; left: 20%; animation-delay: 1s;">
+    </div>
+
+    <!-- Navbar -->
     <nav class="game-navbar sticky-nav">
         <div class="navbar-content">
-            <h1>Guess The Number</h1>
+            <h1>Guess the Number</h1>
         </div>
     </nav>
+
+    <!-- Game container -->
+    <main class="game-container">
+        <div class="game-card">
+            <h2>Can you guess the number?</h2>
+            <p class="subtitle">I'm thinking of a number between 1 and 10</p>
+
+            <div class="game-input">
+                <input type="number" id="guess-input" min="1" max="100" placeholder="Enter your guess">
+                <button id="check-btn" class="game-button">Check</button>
+            </div>
+
+            <div class="game-feedback">
+                <p id="message">Take a guess!</p>
+                <p id="attempts">Attempts: 0</p>
+            </div>
+
+            <button id="restart-btn" class="game-button restart-button">Restart Game</button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
