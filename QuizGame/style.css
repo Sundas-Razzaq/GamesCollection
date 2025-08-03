@@ -1,7 +1,13 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     text-align: center;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: white;
 }
 
 .sticky-nav {
@@ -15,11 +21,7 @@
     background: linear-gradient(135deg, #1a1a2e, #4a6bff);
     color: white;
     padding: 1rem 2rem;
-    text-align: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    position: relative;
-    z-index: 10;
-    margin-bottom: 0;
 }
 
 .navbar-content {
@@ -30,26 +32,142 @@
 .game-navbar h1 {
     font-weight: 600;
     font-size: 2.5rem;
-    margin: 0;
-    padding: 0;
-    background: none;
     color: #ff9a9e;
-    text-shadow: none;
+}
+
+.quiz-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: linear-gradient(135deg, #1a1a2e, #4a6bff);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.btn {
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+#progress {
+    margin-top: 1rem;
+    font-size: 1.2rem;
 }
 
 /* Media Queries for responsiveness */
-@media (min-width: 768px) {
-    .game-navbar h1 {
-        font-size: 3rem;
+@media (max-width: 768px) {
+    .btn {
+        width: 100%;
     }
 
-    .navbar-subtitle {
-        font-size: 1.3rem;
+    .quiz-container {
+        padding: 1rem;
     }
 }
 
-@media (min-width: 1024px) {
-    .game-navbar h1 {
-        font-size: 3.5rem;
+/* Option Button Styling */
+.option-btn {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 0.5rem auto;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid #fff;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.option-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.02);
+}
+
+.option-btn.selected {
+    border: 2px solid #ff9a9e;
+    background-color: rgba(255, 154, 158, 0.3);
+}
+
+/* Better Layout for quiz content */
+#question {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+}
+
+#options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+#quiz-screen,
+#result-screen,
+#welcome-screen {
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+/* Responsive Button Spacing */
+@media (max-width: 768px) {
+    .option-btn {
+        font-size: 1rem;
+        padding: 0.75rem;
+    }
+
+    #question {
+        font-size: 1.2rem;
+    }
+
+    .btn {
+        font-size: 1rem;
+        padding: 0.8rem 1.2rem;
+    }
+}
+
+/* Animated background elements */
+.bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.1;
+    animation: float 15s infinite linear;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-50px) rotate(180deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(360deg);
     }
 }

@@ -4,19 +4,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuizGame</title>
+    <title>Quiz Game</title>
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
+    <!-- Animated background elements -->
+    <div class="bg-circle"
+        style="width: 100px; height: 100px; background: rgba(84, 53, 171, 0.8); top: 20%; left: 10%; animation-delay: 0s;">
+    </div>
+    <div class="bg-circle"
+        style="width: 150px; height: 150px; background: rgba(191, 87, 66, 0.8); top: 60%; left: 80%; animation-delay: 2s;">
+    </div>
+    <div class="bg-circle"
+        style="width: 80px; height: 80px; background: #6a5acd; top: 30%; left: 70%; animation-delay: 4s;">
+    </div>
+    <div class="bg-circle"
+        style="width: 120px; height: 120px; background:rgba(65, 105, 158, 0.8); top: 70%; left: 20%; animation-delay: 1s;">
+    </div>
+    <div class="bg-circle"
+        style="width: 120px; height: 120px; background:rgba(65, 105, 158, 0.8); top: 70%; left: 20%; animation-delay: 1s;">
+    </div>
+    <div class="bg-circle"
+        style="width: 120px; height: 120px; background:rgba(24, 43, 69, 0.8); top: 70%; left: 20%; animation-delay: 0.5s;">
+    </div>
+    <div class="bg-circle"
+        style="width: 120px; height: 120px; background:rgba(13, 179, 60, 0.8); top: 70%; left: 20%; animation-delay: 0.5s;">
+    </div>
+    <div class="bg-circle"
+        style="width: 120px; height: 120px; background:rgba(214, 234, 40, 0.8); top: 70%; left: 20%; animation-delay: 0.5s;">
+    </div>
+    <div class="bg-circle"
+        style="width: 120px; height: 120px; background:rgba(43, 189, 208, 0.8); top: 70%; left: 20%; animation-delay: 0.5s;">
+    </div>
+    <div class="bg-circle"
+        style="width: 120px; height: 120px; background:rgba(1, 6, 13, 0.8); top: 70%; left: 20%; animation-delay: 0.5s;">
+    </div>
+    <div class="bg-circle"
+        style="width: 120px; height: 120px; background:rgba(80, 17, 77, 0.8); top: 70%; left: 20%; animation-delay: 0.5s;">
+    </div>
+    <!-- NAVBAR -->
     <nav class="game-navbar sticky-nav">
         <div class="navbar-content">
             <h1>Quiz Game</h1>
         </div>
     </nav>
-    <script src="script.js"></script>
 
+    <div class="quiz-container">
+        <div id="welcome-screen" class="card">
+            <h2>Welcome to my computer quiz!</h2>
+            <br>
+            <button id="start-btn" class="btn">Start Quiz</button>
+        </div>
+
+        <div id="quiz-screen" class="card hidden">
+            <div id="question-container">
+                <div id="question"></div>
+                <div id="options"></div>
+            </div>
+            <button id="submit-btn" class="btn">Submit</button>
+            <div id="progress"></div>
+        </div>
+
+        <div id="result-screen" class="card hidden">
+            <h2>Your Score: <span id="score"></span></h2>
+            <br>
+            <button id="restart-btn" class="btn">Restart Quiz</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
