@@ -1,6 +1,8 @@
 * {
     margin: 0;
     padding: 0;
+    width: 100%;
+    max-width: 100%;
     box-sizing: border-box;
     text-align: center;
 }
@@ -151,6 +153,17 @@ body {
 }
 
 /* Animated background elements */
+.bg-wrapper {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
 .bg-circle {
     position: absolute;
     border-radius: 50%;
