@@ -10,62 +10,72 @@
 
 <body>
     <!-- Animated background elements -->
-    <div class="bg-circle"
-        style="width: 100px; height: 100px; background: rgba(84, 53, 171, 0.8); top: 20%; left: 10%; animation-delay: 0s;">
+    <div class="bg-wrapper">
+        <div class="bg-circle"
+            style="width: 100px; height: 100px; background: rgba(84, 53, 171, 0.8); top: 20%; left: 10%; animation-delay: 0s;">
+        </div>
+        <div class="bg-circle"
+            style="width: 150px; height: 150px; background: rgba(191, 87, 66, 0.8); top: 60%; left: 80%; animation-delay: 2s;">
+        </div>
+        <div class="bg-circle"
+            style="width: 80px; height: 80px; background: #6a5acd; top: 30%; left: 70%; animation-delay: 4s;">
+        </div>
+        <div class="bg-circle"
+            style="width: 120px; height: 120px; background:rgba(65, 105, 158, 0.8); top: 70%; left: 20%; animation-delay: 1s;">
+        </div>
+        <div class="bg-circle"
+            style="width: 120px; height: 120px; background:rgba(65, 105, 158, 0.8); top: 70%; left: 20%; animation-delay: 1s;">
+        </div>
+        <div class="bg-circle"
+            style="width: 120px; height: 120px; background:rgba(24, 43, 69, 0.8); top: 70%; left: 20%; animation-delay: 0.5s;">
+        </div>
+        <div class="bg-circle"
+            style="width: 120px; height: 120px; background:rgba(13, 179, 60, 0.8); top: 70%; left: 20%; animation-delay: 0.5s;">
+        </div>
+        <div class="bg-circle"
+            style="width: 120px; height: 120px; background:rgba(214, 234, 40, 0.8); top: 70%; left: 20%; animation-delay: 0.5s;">
+        </div>
+        <div class="bg-circle"
+            style="width: 120px; height: 120px; background:rgba(43, 189, 208, 0.8); top: 70%; left: 20%; animation-delay: 0.5s;">
+        </div>
+        <div class="bg-circle"
+            style="width: 120px; height: 120px; background:rgba(1, 6, 13, 0.8); top: 70%; left: 20%; animation-delay: 0.5s;">
+        </div>
+        <div class="bg-circle"
+            style="width: 120px; height: 120px; background:rgba(80, 17, 77, 0.8); top: 70%; left: 20%; animation-delay: 0.5s;">
+        </div>
     </div>
-    <div class="bg-circle"
-        style="width: 150px; height: 150px; background: rgba(191, 87, 66, 0.8); top: 60%; left: 80%; animation-delay: 2s;">
-    </div>
-    <div class="bg-circle"
-        style="width: 80px; height: 80px; background: #6a5acd; top: 30%; left: 70%; animation-delay: 4s;">
-    </div>
-    <div class="bg-circle"
-        style="width: 120px; height: 120px; background:rgba(65, 105, 158, 0.8); top: 70%; left: 20%; animation-delay: 1s;">
-    </div>
-    <div class="bg-circle"
-        style="width: 120px; height: 120px; background:rgba(65, 105, 158, 0.8); top: 70%; left: 20%; animation-delay: 1s;">
-    </div>
-    <div class="bg-circle"
-        style="width: 120px; height: 120px; background:rgba(24, 43, 69, 0.8); top: 70%; left: 20%; animation-delay: 0.5s;">
-    </div>
-    <div class="bg-circle"
-        style="width: 120px; height: 120px; background:rgba(13, 179, 60, 0.8); top: 70%; left: 20%; animation-delay: 0.5s;">
-    </div>
-    <div class="bg-circle"
-        style="width: 120px; height: 120px; background:rgba(214, 234, 40, 0.8); top: 70%; left: 20%; animation-delay: 0.5s;">
-    </div>
-    <div class="bg-circle"
-        style="width: 120px; height: 120px; background:rgba(43, 189, 208, 0.8); top: 70%; left: 20%; animation-delay: 0.5s;">
-    </div>
-    <div class="bg-circle"
-        style="width: 120px; height: 120px; background:rgba(1, 6, 13, 0.8); top: 70%; left: 20%; animation-delay: 0.5s;">
-    </div>
-    <div class="bg-circle"
-        style="width: 120px; height: 120px; background:rgba(80, 17, 77, 0.8); top: 70%; left: 20%; animation-delay: 0.5s;">
-    </div>
-    <!-- NAVBAR -->
+    <!-- Navbar -->
     <nav class="game-navbar sticky-nav">
         <div class="navbar-content">
             <h1>Typing Speed Test</h1>
         </div>
     </nav>
 
+    <!-- Game Container -->
     <div class="typing-container">
+        <!-- Instructions -->
         <h2>Type the text below as fast and accurately as you can!</h2>
 
-        <div id="paragraph-display" class="text-box"></div>
+        <!-- Text to Type -->
+        <div id="text-display" class="text-box"></div>
 
-        <textarea id="typing-input" placeholder="Start typing here..." rows="5"></textarea>
+        <!-- Input Box -->
+        <textarea id="text-input" placeholder="Start typing here..." rows="5"></textarea>
 
+        <!-- Timer & Stats -->
         <div class="info">
-            <div><strong>Time:</strong> <span id="timer">0</span>s</div>
+            <div><strong>Time:</strong> <span id="timer">60</span>s</div>
             <div><strong>WPM:</strong> <span id="wpm">0</span></div>
-            <div><strong>Accuracy:</strong> <span id="accuracy">100</span>%</div>
+            <div><strong>Accuracy:</strong> <span id="accuracy">0</span>%</div>
         </div>
 
-        <div id="final-result" class="result-box" style="display: none;"></div>
-
+        <!-- Restart -->
         <button id="restart-btn" class="btn">Restart Test</button>
+        <br>
+        <button id="done-btn" class="btn">Done</button>
+        <p id="summary-message" style="margin-top: 1rem; font-size: 1.2rem;"></p>
+
     </div>
 
     <script src="script.js"></script>

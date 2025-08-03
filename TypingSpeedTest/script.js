@@ -1,96 +1,144 @@
-const paragraphDisplay = document.getElementById("paragraph-display");
-const typingInput = document.getElementById("typing-input");
+// Lecture 1️⃣: Setup & Variables
+
+// DOM Elements
+const textDisplay = document.getElementById("text-display");
+const textInput = document.getElementById("text-input");
 const timerDisplay = document.getElementById("timer");
 const wpmDisplay = document.getElementById("wpm");
 const accuracyDisplay = document.getElementById("accuracy");
-const resultDisplay = document.getElementById("final-result");
 const restartBtn = document.getElementById("restart-btn");
 
-let originalText = `Typing is a fundamental skill that allows individuals to communicate effectively and efficiently using a keyboard. Practicing typing helps improve speed and accuracy, which are both crucial for productivity in the digital age.`;
-let timer = null;
-let startTime = null;
-let totalTyped = 0;
-let totalCorrect = 0;
+// Game State Variables
+let timer = 60; // seconds
+let interval = null;
+let isGameRunning = false;
 
-function loadParagraph() {
-    paragraphDisplay.innerText = originalText;
-    typingInput.value = "";
-    typingInput.disabled = false;
-    timerDisplay.textContent = "0";
-    wpmDisplay.textContent = "0";
-    accuracyDisplay.textContent = "100";
-    resultDisplay.style.display = "none";
-    resultDisplay.innerHTML = "";
-    totalTyped = 0;
-    totalCorrect = 0;
-    startTime = null;
-    clearInterval(timer);
-    timer = null;
+let correctChars = 0;
+let totalTypedChars = 0;
+let targetText = "";
+// Lecture 2️⃣: Load & Display Random Text
+
+const paragraphs = [
+    "Typing fast is a skill that gets better with practice and patience.",
+    "JavaScript is a versatile language used both on the client and server side.",
+    "Practice daily to improve your accuracy and typing speed effectively.",
+    "This is a simple typing test game built using HTML, CSS and JavaScript."
+];
+
+// Load and render a random paragraph
+function loadText() {
+    const randomIndex = Math.floor(Math.random() * paragraphs.length);
+    targetText = paragraphs[randomIndex];
+    textDisplay.innerHTML = "";
+
+    // Create span for each character
+    targetText.split("").forEach(char => {
+        const span = document.createElement("span");
+        span.innerText = char;
+        textDisplay.appendChild(span);
+    });
 }
 
+// Call it once initially
+loadText();
+// Lecture 3️⃣: Typing & Highlighting
+
+textInput.addEventListener("input", () => {
+    if (!isGameRunning) {
+        startTimer(); // First keystroke starts timer
+        isGameRunning = true;
+    }
+
+    const inputText = textInput.value;
+    const spanElements = textDisplay.querySelectorAll("span");
+
+    totalTypedChars = inputText.length;
+    correctChars = 0;
+
+    spanElements.forEach((span, index) => {
+        const typedChar = inputText[index];
+
+        if (typedChar == null) {
+            span.classList.remove("correct", "incorrect");
+        } else if (typedChar === span.innerText) {
+            span.classList.add("correct");
+            span.classList.remove("incorrect");
+            correctChars++;
+        } else {
+            span.classList.add("incorrect");
+            span.classList.remove("correct");
+        }
+    });
+
+    updateStats(); // update live stats
+});
+// Lecture 4️⃣: Timer & WPM/Accuracy
+
 function startTimer() {
-    startTime = new Date();
-    timer = setInterval(() => {
-        const elapsed = Math.floor((new Date() - startTime) / 1000);
-        timerDisplay.textContent = elapsed;
-        updateWPM(elapsed);
+    interval = setInterval(() => {
+        if (timer <= 0) {
+            clearInterval(interval);
+            textInput.disabled = true;
+        } else {
+            timer--;
+            timerDisplay.textContent = timer;
+            updateStats();
+        }
     }, 1000);
 }
 
-function stopTimer() {
-    clearInterval(timer);
-    timer = null;
-}
+function updateStats() {
+    const wordsTyped = textInput.value.trim().split(/\s+/).length;
+    const wpm = Math.round((wordsTyped / (60 - timer)) * 60) || 0;
 
-function updateWPM(seconds) {
-    if (seconds === 0) return;
-    const words = typingInput.value.trim().split(/\s+/).length;
-    const wpm = Math.round((words / seconds) * 60);
+    const accuracy = totalTypedChars > 0
+        ? Math.round((correctChars / totalTypedChars) * 100)
+        : 100;
+
     wpmDisplay.textContent = wpm;
-}
-
-function showFinalResults() {
-    const timeTaken = Math.floor((new Date() - startTime) / 1000);
-    const words = typingInput.value.trim().split(/\s+/).length;
-    const wpm = Math.round((words / timeTaken) * 60);
-    const accuracy = ((totalCorrect / totalTyped) * 100).toFixed(1);
-
-    resultDisplay.innerHTML = `
-    <h3>Test Completed!</h3>
-    <p><strong>Final WPM:</strong> ${wpm}</p>
-    <p><strong>Accuracy:</strong> ${accuracy}%</p>
-    <p><strong>Total Time:</strong> ${timeTaken} seconds</p>
-  `;
-    resultDisplay.style.display = "block";
-}
-
-typingInput.addEventListener("input", () => {
-    const userInput = typingInput.value;
-
-    if (userInput.length === 1 && !timer) {
-        startTimer();
-    }
-
-    totalTyped = userInput.length;
-    totalCorrect = 0;
-
-    for (let i = 0; i < userInput.length; i++) {
-        if (userInput[i] === originalText[i]) {
-            totalCorrect++;
-        }
-    }
-
-    const accuracy = totalTyped > 0 ? ((totalCorrect / totalTyped) * 100).toFixed(1) : 100;
     accuracyDisplay.textContent = accuracy;
+}
+// Lecture 5️⃣: Reset Game
 
-    if (userInput === originalText) {
-        stopTimer();
-        typingInput.disabled = true;
-        showFinalResults();
-    }
+restartBtn.addEventListener("click", () => {
+    clearInterval(interval);
+    timer = 60;
+    isGameRunning = false;
+
+    textInput.value = "";
+    textInput.disabled = false;
+
+    timerDisplay.textContent = "60";
+    wpmDisplay.textContent = "0";
+    accuracyDisplay.textContent = "100";
+    summaryMessage.textContent = "";
+    correctChars = 0;
+    totalTypedChars = 0;
+
+    loadText(); // Load new text
 });
 
-restartBtn.addEventListener("click", loadParagraph);
+//donebtn
+const doneBtn = document.getElementById("done-btn");
+const summaryMessage = document.getElementById("summary-message");
 
-// Initialize
-loadParagraph();
+doneBtn.addEventListener("click", () => {
+    if (!isGameRunning) return;
+
+    clearInterval(interval);
+    isGameRunning = false;
+    textInput.disabled = true;
+
+    // Calculate words
+    const wordsTyped = textInput.value.trim().split(/\s+/).filter(word => word !== "").length;
+    const wpm = Math.round((wordsTyped / (60 - timer)) * 60) || 0;
+    const accuracy = totalTypedChars > 0
+        ? Math.round((correctChars / totalTypedChars) * 100)
+        : 100;
+
+    wpmDisplay.textContent = wpm;
+    accuracyDisplay.textContent = accuracy;
+
+    summaryMessage.textContent = `You typed ${wordsTyped} word(s) at ${wpm} WPM with ${accuracy}% accuracy.`;
+});
+
