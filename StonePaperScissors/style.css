@@ -21,31 +21,68 @@
   position: relative;
   z-index: 10;
   margin-bottom: 0;
+  overflow: hidden;
 }
 
 .navbar-content {
+  display: flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .game-navbar h1 {
   font-weight: 600;
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin: 0;
   padding: 0;
   background: none;
   color: #ff9a9e;
   text-shadow: none;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+/* Animated Background */
+.bg-wrapper {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.1;
+    animation: float 15s infinite linear;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-50px) rotate(180deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(360deg);
+    }
+}
 /* Media Queries for responsiveness */
 @media (min-width: 768px) {
   .game-navbar h1 {
     font-size: 3rem;
-  }
-
-  .navbar-subtitle {
-    font-size: 1.3rem;
   }
 }
 
@@ -99,14 +136,22 @@ img {
 }
 
 .msg-container {
-  margin-top: 5rem;
-}
+display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 0 1rem;
+  width: 100%;}
 
 #msg {
   background-color: #081b31;
   color: #fff;
-  font-size: 2rem;
-  display: inline;
-  padding: 1rem;
-  border-radius: 1rem;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  word-break: break-word;
+  max-width: 90vw;
+  box-sizing: border-box;
+  line-height: 1.3;
 }
